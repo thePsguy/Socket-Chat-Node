@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
+		<title>Socket Chat :D</title>
+		<link rel="stylesheet" href="/style"/>
+	</head>
+	<body>
+		<ul id="messages"></ul>
+		<form action="">
+			<input id="nick" placeholder="Nick"/> <input id="m" placeholder="Message" autocomplete="off" /><button>Send</button>
+		</form>
+	<script src="/socket.io/socket.io.js"></script>	
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script>
+		var socket = io();
+		$('form').submit(function(){
+			if($('#nick').val()!='') {
+				var msg = [$('#nick').val(), $('#m').val()];
+				socket.emit('Message', msg);
+				$('#m').val('');
+				return false;
+			}
+			else
+				alert('Need a Nick!');
+		});
+		socket.on('Message', function(m){
+			$('#messages').append($('<li>').text(m[0] + '> ' + m[1]));
+			$('#messages').scrollTop($('#messages')[0].scrollHeight);
+		});
+	
+	</script>
+	</body>
+</html>
