@@ -18,7 +18,7 @@
 				var msg = [$('#nick').val(), $('#m').val()];
 				socket.emit('Message', msg);
 				$('#m').val('');
-				$('#messages').append($('<li>').text(msg[1]));
+				$('#messages').append($('<li id="right">').text(msg[1]));
 				$('#messages').scrollTop($('#messages')[0].scrollHeight);
 				return false;
 			}
@@ -26,7 +26,7 @@
 				alert('Need a Nick!');
 		});
 		socket.on('Message', function(m){
-			$('#messages').append($('<li>').text(m[0] + '> ' + m[1]));
+			$('#messages').append($('<li id="left">').text(m[0] + '> ' + m[1]));
 			$('#messages').scrollTop($('#messages')[0].scrollHeight);
 		});
 	
