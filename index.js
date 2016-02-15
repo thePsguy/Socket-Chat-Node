@@ -11,14 +11,14 @@ app.get('/style', function(req,res){
 });
 
 io.on('connection', function(socket){
-	//console.log('New Connection');
+	var address = socket.request.connection.remoteAddress;
+	console.log(address.slice(7) + ' Connected');
 	
 	socket.on('disconnect', function(){
-		/*console.log('Disconnected');*/
+		console.log(address.slice(7) + ' Disconnected');
 	});
 
 	socket.on('Message', function(msg){
-		console.log('Message on serve');
 		//setTimeout(function(){
 		socket.broadcast.emit('Message', msg);
 		//},5000);
