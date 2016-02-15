@@ -18,6 +18,8 @@
 				var msg = [$('#nick').val(), $('#m').val()];
 				socket.emit('Message', msg);
 				$('#m').val('');
+				$('#messages').append($('<li>').text(msg[1]));
+				$('#messages').scrollTop($('#messages')[0].scrollHeight);
 				return false;
 			}
 			else

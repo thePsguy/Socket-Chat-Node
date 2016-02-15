@@ -11,15 +11,17 @@ app.get('/style', function(req,res){
 });
 
 io.on('connection', function(socket){
-	console.log('New Connection');
+	//console.log('New Connection');
 	
 	socket.on('disconnect', function(){
 		/*console.log('Disconnected');*/
 	});
 
 	socket.on('Message', function(msg){
-
-		io.emit('Message', msg);
+		console.log('Message on serve');
+		//setTimeout(function(){
+		socket.broadcast.emit('Message', msg);
+		//},5000);
 	});
 });
 

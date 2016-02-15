@@ -8,4 +8,3 @@ form button { width: 12%; background: rgb(130, 224, 255); border: none; padding:
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
 #nick {width:60px;}
-
